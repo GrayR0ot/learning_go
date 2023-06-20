@@ -3,10 +3,12 @@ package dictionary
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
 type Entry struct {
 	value string
+	date  time.Time
 }
 
 func (e Entry) String() string {
@@ -27,7 +29,7 @@ func New() *Dictionary {
 }
 
 func (d *Dictionary) Add(word string, definition string) {
-	d.entries[word] = Entry{value: definition}
+	d.entries[word] = Entry{value: definition, date: time.Now()}
 }
 
 func (d *Dictionary) Get(word string) (Entry, error) {
@@ -45,8 +47,9 @@ func (d *Dictionary) Remove(word string) {
 }
 
 func (d *Dictionary) List() {
+	fmt.Println("World	| Definition			| Date")
 	for key, element := range d.entries {
-		fmt.Println(key, ":", element)
+		fmt.Println(key, "	| ", element.value, "		| "+element.date.Format(time.DateTime))
 	}
 }
 
