@@ -1,32 +1,57 @@
 package main
 
 import (
+	"bufio"
 	"estiam/dictionary"
 	"fmt"
+	"os"
+	"strings"
 )
 
 func main() {
 
-	const nameKey string = "name"
+	const helpLine = "Give me a command:"
+	const worldRequest = "Give me a world:"
+	scanner := bufio.NewReader(os.Stdin)
 
 	dict := dictionary.New()
-	fmt.Printf("dict > len: %v\n", dict.Size())
 
-	dict.Add(nameKey, "Léo")
-	fmt.Printf("dict > newLen: %v\n", dict.Size())
+	for true { // INFINITE LOOP
+		fmt.Println("Enter command (ADD, DEF, REMOVE, LIST, EXIT): ")
+		cmd, _ := scanner.ReadString('\n')
+		cmd = strings.TrimSpace(cmd)
+		cmd = strings.ToUpper(cmd)
 
-	name, err := dict.Get(nameKey)
-	if exist := err != nil; exist {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("dict > name: %v\n", name)
-	}
+		switch cmd {
+		case "ADD":
+			fmt.Println(worldRequest)
+			key, _ := scanner.ReadString('\n')
 
-	dict.Remove(nameKey)
-	name, err = dict.Get(nameKey)
-	if exist := err != nil; exist {
-		fmt.Printf("err: %v\n", err)
-	} else {
-		fmt.Printf("dict > name: %v\n", name)
+			fmt.Println("Give me a definition:")
+			value, _ := scanner.ReadString('\n')
+			dict.Add(strings.TrimSpace(key), strings.TrimSpace(value))
+
+		case "DEF":
+			fmt.Println(worldRequest)
+			key, _ := scanner.ReadString('\n')
+
+			value, _ := dict.Get(strings.TrimSpace(key))
+			fmt.Println(value)
+
+		case "REMOVE":
+			fmt.Println(worldRequest)
+			key, _ := scanner.ReadString('\n')
+			dict.Remove(strings.TrimSpace(key))
+			fmt.Println("Removed definition for world", key)
+
+		case "LIST":
+			dict.List()
+
+		case "EXIT":
+			os.Exit(-1)
+
+		default:
+			fmt.Println("I don't understand the command:", cmd)
+		}
 	}
 }

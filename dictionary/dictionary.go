@@ -44,9 +44,10 @@ func (d *Dictionary) Remove(word string) {
 	fmt.Println("Removed value for key", word, "successfully!")
 }
 
-func (d *Dictionary) List() ([]string, map[string]Entry) {
-
-	return []string{}, d.entries
+func (d *Dictionary) List() {
+	for key, element := range d.entries {
+		fmt.Println(key, ":", element)
+	}
 }
 
 func (d *Dictionary) Size() int {
