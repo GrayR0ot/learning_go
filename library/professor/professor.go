@@ -1,4 +1,4 @@
-package library
+package professor
 
 type Professor struct {
 	name string
