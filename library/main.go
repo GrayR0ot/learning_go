@@ -8,11 +8,11 @@ import (
 
 func main() {
 
-	student1 := student.NewStudent("Léo")
-	student2 := student.NewStudent("Pierre")
+	student1 := student.Student{Name: "Léo"}
+	student2 := student.Student{Name: "Pierre"}
 
-	professor1 := professor.NewProfessor("Paul")
-	professor2 := professor.NewProfessor("Jack")
+	professor1 := professor.Professor{Name: "Paul"}
+	professor2 := professor.Professor{Name: "Jack"}
 
 	users := make([]user.User, 0)
 	users = append(users, student1)
