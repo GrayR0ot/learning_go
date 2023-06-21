@@ -15,10 +15,10 @@ func main() {
 	professor2 := professor.Professor{Name: "Jack"}
 
 	users := make([]user.User, 0)
-	users = append(users, student1)
-	users = append(users, student2)
-	users = append(users, professor1)
-	users = append(users, professor2)
+	users = append(users, &student1)
+	users = append(users, &student2)
+	users = append(users, &professor1)
+	users = append(users, &professor2)
 
 	user.PrintRent(&users)
 }
