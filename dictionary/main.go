@@ -10,6 +10,8 @@ func main() {
 		Database: make(map[string]model.Entry),
 	}
 
+	repository.Init()
+
 	CLI := CLI{Repository: &repository}
 	go CLI.Listen()
 
