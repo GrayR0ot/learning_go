@@ -68,3 +68,7 @@ func (c *Controller) Get(writer http.ResponseWriter, request *http.Request) {
 
 	json.NewEncoder(writer).Encode(entry)
 }
+
+func (c *Controller) GetAll(writer http.ResponseWriter, request *http.Request) {
+	json.NewEncoder(writer).Encode(c.Repository.Database)
+}

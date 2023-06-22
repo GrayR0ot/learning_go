@@ -39,6 +39,7 @@ func (s *Server) Listen() {
 
 	router.Post("/definition", controller.Create)
 	router.Get("/definition/{word}", controller.Get)
+	router.Get("/definition/", controller.GetAll)
 
 	fmt.Printf("Starting server at port 8080\n")
 	if err := http.ListenAndServe(":8080", router); err != nil {
