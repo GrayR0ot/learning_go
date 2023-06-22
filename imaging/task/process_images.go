@@ -21,7 +21,7 @@ func ProcessImages(input string, output string) {
 
 func channelProcess(images []my_image.MyImage) []my_image.MyImage {
 
-	poolSize := 1
+	poolSize := 2
 	workerPool := make(chan struct{}, poolSize)
 
 	results := make(chan my_image.MyImage, len(images))
